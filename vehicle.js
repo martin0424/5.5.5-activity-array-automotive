@@ -51,26 +51,7 @@ class Vehicle {
             alert("You need to start the engine first.");
         }
     }
-    stop() {
-        this.started = false;
-    }
-
-    drive() {
-        accelerate();
-    }
-    brake() {
-        decelerate();
-    }
-
-    autoPark()
-    {
-
-    }
-
-    autoDrive()
-    {
-      
-    }
+    
 
     typeOfVehicle(wheels) {
         if (this.numberOfWheels == 8 && 8 == wheels) {
