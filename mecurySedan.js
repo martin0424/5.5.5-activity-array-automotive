@@ -1,60 +1,51 @@
 //this includes the vehicle class as a module
-const VehicleModule = require("./vehicle.js");
-console.log(VehicleModule);
+const VehicleModule = require("./vehicle").Vehicle;
 
-class Car extends VehicleModule.Vehicle {
+class Car extends VehicleModule {
   constructor(make, model, year, color, mileage) {
     super(make, model, year, color, mileage);
-    this.maxPassengers = 5;
+    this.maximumPassengers = 5;
     this.passenger = 0;
     this.numberOfWheels = 4;
-    this.maxSpeed = 160;
-    this.fuel = 10;
+    this.maximumSpeed = 200;
+    this.fuel = 100;
     this.scheduleService = false;
   }
-
-  loadPassenger(num) {
-    if (this.passenger < this.maxPassengers) {
-      if (num + this.passenger <= this.maxPassengers) {
-        this.passenger = num;
-        return this.passenger;
-      } else {
-        console.log(
-          this.model +
-            " " +
-            this.make +
-            " do not have enough space to take all passengers."
-        );
-      }
-    } else {
-      console.log(this.model + " " + this.make + " is full");
-    }
-  }
-
-  start() {
-    if (this.fuel > 0) {
-      console.log("engine has started.");
-      return (this.started = true);
-    } else {
-      console.log("There is no fuel");
-      return (this.started = false);
-    }
-  }
-
-  scheduleService() {
-    if (this.mileage > 30000) {
+  maitLight() {
+    if (this.mileage > 10000) {
       this.scheduleService = true;
+      //console.log('Schedule Service') i dont have anyt vale at the end of this function
       return this.scheduleService;
     }
   }
+  loadPassenger(num) {
+    if (this.passenger < this.maximumPassengers) {
+      if (num + this.passenger <= this.maximumPassengers) {
+        this.passenger = num;
+        return this.passenger;
+        //console.log(this.passenger) again, no value after function runs... whateever number is entered BECOMES this.passagner, then checks against this.max
+      } else {
+        console.log(
+          this.model + " " + this.make + "will not fit that many passengers."
+        );
+      }
+    }
+  }
 }
-
 //this shows how to call from this module...
-let v = new VehicleModule.Vehicle("Mecury", "Sedan", "1965", "Black", "43000");
+//need to add new "constructor" values?
+const myCar = new Car(
+  "Mecury",
+  "crosstreck",
+  "1965",
+  "dirt bag brown",
+  "10001"
+);
 
-const myCar = new Car("Mecury", "Sedan", "1965", "Black", "43000");
+myCar.start(); //already defined in myCarehicle.js
+myCar.stop(); //already defined in myCarehicle.js
+myCar.maitLight();
+myCar.loadPassenger(5);
 
-myCar.start();
-myCar.loadPassenger(6);
+console.log(myCar.make);
 
-console.log(v.make);
